@@ -1,9 +1,7 @@
-Certainly, let's ensure the README.md content is correctly formatted as a complete markdown source file for copying:
-
-```markdown
 # AWSTool
 
-AWSTool is a collection of command-line tools designed to enhance your productivity in AWS CloudShell or other AWS bash environments. These tools offer various functionalities, including tailing AWS CloudWatch logs, setting time zones, and more, directly from your command line.
+AWSTool is a collection of command-line tools designed to enhance your productivity in AWS CloudShell.
+The frst version only has a tail_aws_logs which allows tail of aws cloudwatch logs.
 
 ## Installation
 
@@ -36,21 +34,46 @@ source ~/.bashrc
 
 ### Tail AWS Logs
 
-`tail_aws_logs` allows you to tail AWS CloudWatch logs directly from your command line. Here are a few examples of how to use it:
+The `tail_aws_logs` function allows you to tail AWS CloudWatch logs directly from your command line, offering various options for filtering and customization. Here is how you can use it:
 
-- Tail logs from a specific log group and app:
+- To tail logs from a specific log group:
 
 ```bash
-tail_aws_logs <log_group_name> <app_name>
+tail_aws_logs -g <log_group_name>
 ```
 
-- Tail logs from a specific log group and app, setting the history window and time zone:
+- To include additional filtering and customization options:
 
 ```bash
-tail_aws_logs <log_group_name> <app_name> <history_minutes> [<timezone>]
+tail_aws_logs -g <log_group_name> -s <stream_pattern> -h <history_minutes> -t <timezone> -p <poll_interval_seconds>
+```
+
+**Options:**
+
+- `--loggroup, -g`: The name of the CloudWatch Log Group (**required**).
+- `--stream, -s`: The pattern of stream name within the Log Group (optional).
+- `--history, -h`: The history window in minutes to fetch logs from (optional, default is 1).
+- `--timezone, -t`: The timezone to display timestamps in (optional, default is America/New_York).
+- `--poll-interval, -p`: The interval in seconds between log fetches (optional, default is 5).
+- `--help`: Show usage page.
+**Examples:**
+
+- Tail logs from the "billing-qa" log group, filtering by the "payment" stream, with a history window of 10 minutes, in the PST timezone, polling every 5 seconds:
+
+```bash
+tail_aws_logs --loggroup "billing-qa" --stream "payment" --history 10 --timezone "America/Los_Angeles" --poll-interval 5
+```
+
+- Tail logs from the "billing-qa" with a history of 5 minutes, polling every 10 seconds:
+
+```bash
+tail_aws_logs -g billing-qa -h 5 -p 10 | grep "invoice"
+```
+
+If you would want the logs to use a default timezone other than EST, you could run:
+
+```bash
+set_tz
 ```
 
 For more information on each command and additional options, refer to the individual tool documentation within the `src` folder.
-```
-
-Please replace `https://raw.githubusercontent.com/yourusername/awstool/main/install_awstool.sh` with the actual URL to your `install_awstool.sh` script on GitHub, and adjust the `yourusername` part to match your GitHub username.

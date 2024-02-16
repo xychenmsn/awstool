@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Download awstool.sh from the GitHub repository
-curl -o ~/awstool.sh https://raw.githubusercontent.com/yourusername/awstool/main/awstool.sh
+curl -o ~/awstool.sh https://raw.githubusercontent.com/xychenmsn/awstool/main/awstool.sh
 
 # Make it executable
 chmod +x ~/awstool.sh

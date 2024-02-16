@@ -1,10 +1,5 @@
 ### make_awstool.sh
 
-This script combines all the source files into `awstool.sh`.
-
-```bash
-#!/bin/bash
-
 # Combine all source files into awstool.sh
 echo "#!/bin/bash" > awstool.sh
 echo "" >> awstool.sh

@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # Function to display a list of timezones and allow the user to select one
 function set_tz() {
@@ -24,5 +23,3 @@ function set_tz() {
     echo "$selected_timezone" > ~/.tz
     echo "Timezone saved to ~/.tz"
 }
-
-set_tz
